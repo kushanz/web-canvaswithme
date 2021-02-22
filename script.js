@@ -54,10 +54,10 @@ class Particle {
     let directionX = forceDirectionX * force * this.dinsity;
     let directionY = forceDirectionY * force * this.dinsity;
     if (distance < mouse.radius) {
-      this.x -= directionX;
-      this.y -= directionY;
+      this.x -= forceDirectionX * 3;
+      this.y -= forceDirectionY * 3;
     } else {
-      this.size = 2;
+      this.size = 3;
     }
   }
 }
