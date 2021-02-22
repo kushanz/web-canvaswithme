@@ -47,10 +47,17 @@ class Particle {
     let dx = mouse.x - this.x;
     let dy = mouse.y - this.y;
     let distance = Math.sqrt(dx * dx + dy * dy);
-    if (distance < 500) {
-      this.size = 50;
+    let forceDirectionX = dx / distance;
+    let forceDirectionY = dy / distance;
+    let maxDistance = mouse.radius;
+    let force = (maxDistance - distance) / maxDistance;
+    let directionX = forceDirectionX * force * this.dinsity;
+    let directionY = forceDirectionY * force * this.dinsity;
+    if (distance < mouse.radius) {
+      this.x -= directionX;
+      this.y -= directionY;
     } else {
-      this.size = 3;
+      this.size = 2;
     }
   }
 }
@@ -71,6 +78,7 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < particlesArray.length; i++) {
     particlesArray[i].draw();
+    particlesArray[i].update();
   }
   requestAnimationFrame(animate);
 }
