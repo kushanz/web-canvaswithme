@@ -31,10 +31,10 @@ class Particle {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.size = 3;
+    this.size = 2;
     this.baseX = this.x;
     this.baseY = this.y;
-    this.density = Math.random() * 150 + 50;
+    this.density = Math.random() * 40 + 50;
   }
   draw() {
     ctx.fillStyle = "yellow";
@@ -57,14 +57,21 @@ class Particle {
       this.x -= directionX;
       this.y -= directionY;
     } else {
-      this.size = 3;
+      if (this.x !== this.baseX) {
+        let dx = this.x - this.baseX;
+        this.x -= dx / 10;
+      }
+      if (this.y !== this.baseY) {
+        let dy = this.y - this.baseY;
+        this.y -= dy / 10;
+      }
     }
   }
 }
 
 function init() {
   particlesArray = [];
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 400; i++) {
     let x = Math.random() * canvas.width;
     let y = Math.random() * canvas.height;
     particlesArray.push(new Particle(x, y));
