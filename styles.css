@@ -1,3 +1,6 @@
 body {
   background: orange;
 }
+#mycanvas {
+  border: 1px #6f7172 solid;
+}
