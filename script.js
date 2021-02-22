@@ -25,7 +25,7 @@ ctx.fillText("A", 0, 30);
 // ctx.strokeStyle = "white";
 // ctx.strokeRect(0, 0, 100, 100);
 
-const data = ctx.getImageData(0, 0, 100, 100);
+const textCordinates = ctx.getImageData(0, 0, 100, 100);
 
 class Particle {
   constructor(x, y) {
@@ -71,7 +71,7 @@ class Particle {
 
 function init() {
   particlesArray = [];
-  for (let i = 0; i < 400; i++) {
+  for (let i = 0; i < 1000; i++) {
     let x = Math.random() * canvas.width;
     let y = Math.random() * canvas.height;
     particlesArray.push(new Particle(x, y));
