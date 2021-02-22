@@ -41,13 +41,13 @@ class Particle {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
-    ctx.fill;
+    ctx.fill();
   }
 }
 
 function init() {
   particlesArray = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 200; i++) {
     let x = Math.random() * canvas.width;
     let y = Math.random() * canvas.height;
     particlesArray.push(new Particle(x, y));
