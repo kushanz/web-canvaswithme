@@ -37,7 +37,7 @@ class Particle {
     this.density = Math.random() * 30 + 1;
   }
   draw() {
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "yellow";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
