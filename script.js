@@ -21,7 +21,7 @@ window.addEventListener("mousemove", function(event) {
 
 ctx.fillStyle = "white";
 ctx.font = "30px Verdana";
-ctx.fillText("A", 0, 30);
+ctx.fillText("KU", 0, 30);
 // ctx.strokeStyle = "white";
 // ctx.strokeRect(0, 0, 100, 100);
 
@@ -37,7 +37,7 @@ class Particle {
     this.density = Math.random() * 40 + 5;
   }
   draw() {
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "yellow";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
