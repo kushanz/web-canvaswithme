@@ -10,7 +10,7 @@ let particlesArray = [];
 const mouse = {
   x: null,
   y: null,
-  radius: 50
+  radius: 100
 };
 
 window.addEventListener("mousemove", function(event) {
@@ -34,10 +34,10 @@ class Particle {
     this.size = 2;
     this.baseX = this.x;
     this.baseY = this.y;
-    this.density = Math.random() * 40 + 50;
+    this.density = Math.random() * 40 + 5;
   }
   draw() {
-    ctx.fillStyle = "yellow";
+    ctx.fillStyle = "red";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
@@ -77,8 +77,19 @@ function init() {
     particlesArray.push(new Particle(x, y));
   }
 }
-
-init();
+function initA() {
+  particlesArray = [];
+  for (let y = 0, y2 = textCordinates.height; y < y2; y++) {
+    for (let x = 0, x2 = textCordinates.width; x < x2; x++) {
+      if (textCordinates.data[y * 4 * textCordinates.width + x * 4 + 3] > 128) {
+        let positionX = x;
+        let positionY = y;
+        particlesArray.push(new Particle(positionX * 50, positionY * 50));
+      }
+    }
+  }
+}
+// init();
 console.log(particlesArray);
 
 function animate() {
