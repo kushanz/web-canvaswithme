@@ -84,12 +84,13 @@ function initA() {
       if (textCordinates.data[y * 4 * textCordinates.width + x * 4 + 3] > 128) {
         let positionX = x;
         let positionY = y;
-        particlesArray.push(new Particle(positionX * 50, positionY * 50));
+        particlesArray.push(new Particle(positionX * 20, positionY * 20));
       }
     }
   }
 }
 // init();
+initA();
 console.log(particlesArray);
 
 function animate() {
