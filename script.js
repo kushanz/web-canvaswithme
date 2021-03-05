@@ -21,7 +21,7 @@ window.addEventListener("mousemove", function(event) {
 
 ctx.fillStyle = "white";
 ctx.font = "30px Verdana";
-ctx.fillText("KU", 0, 30);
+ctx.fillText("K", 0, 30);
 // ctx.strokeStyle = "white";
 // ctx.strokeRect(0, 0, 100, 100);
 
@@ -59,11 +59,11 @@ class Particle {
     } else {
       if (this.x !== this.baseX) {
         let dx = this.x - this.baseX;
-        this.x -= dx / 10;
+        this.x -= dx / 20;
       }
       if (this.y !== this.baseY) {
         let dy = this.y - this.baseY;
-        this.y -= dy / 10;
+        this.y -= dy / 20;
       }
     }
   }
@@ -84,7 +84,7 @@ function initA() {
       if (textCordinates.data[y * 4 * textCordinates.width + x * 4 + 3] > 128) {
         let positionX = x;
         let positionY = y;
-        particlesArray.push(new Particle(positionX * 20, positionY * 20));
+        particlesArray.push(new Particle(positionX * 10, positionY * 10));
       }
     }
   }
@@ -99,6 +99,27 @@ function animate() {
     particlesArray[i].draw();
     particlesArray[i].update();
   }
+  connect();
   requestAnimationFrame(animate);
 }
 animate();
+
+function connect() {
+  let opacityValue = 1;
+  for (let a = 0; a < particlesArray.length; a++) {
+    for (let b = a; b < particlesArray.length; b++) {
+      let dx = particlesArray[a].x - particlesArray[b].x;
+      let dy = particlesArray[b].y - particlesArray[b].y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      opacityValue = 1 - distance / 50;
+      ctx.strokeStyle = "rgba(255,255,255, " + opacityValue + ")";
+      if (distance < 10) {
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
