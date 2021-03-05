@@ -84,7 +84,7 @@ function initA() {
       if (textCordinates.data[y * 4 * textCordinates.width + x * 4 + 3] > 128) {
         let positionX = x;
         let positionY = y;
-        particlesArray.push(new Particle(positionX * 10, positionY * 10));
+        particlesArray.push(new Particle(positionX * 20, positionY * 20));
       }
     }
   }
@@ -109,11 +109,11 @@ function connect() {
   for (let a = 0; a < particlesArray.length; a++) {
     for (let b = a; b < particlesArray.length; b++) {
       let dx = particlesArray[a].x - particlesArray[b].x;
-      let dy = particlesArray[b].y - particlesArray[b].y;
+      let dy = particlesArray[b].x - particlesArray[b].y;
       let distance = Math.sqrt(dx * dx + dy * dy);
       opacityValue = 1 - distance / 50;
       ctx.strokeStyle = "rgba(255,255,255, " + opacityValue + ")";
-      if (distance < 10) {
+      if (distance < 50) {
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
